@@ -2,7 +2,7 @@ import { Service } from "@deepseek-ai/cordis";
 
 export class RelayTerminalProviderRegistry extends Service {
   apiVersion = 1;
-  #providers = new Map();
+  _providers = new Map();
 
   constructor(ctx) {
     super(ctx, "relayTerminalProviders");
@@ -10,22 +10,22 @@ export class RelayTerminalProviderRegistry extends Service {
 
   register(provider) {
     validateProvider(provider);
-    if (this.#providers.has(provider.id)) throw new Error(`terminal provider ${provider.id} is already registered`);
+    if (this._providers.has(provider.id)) throw new Error(`terminal provider ${provider.id} is already registered`);
     const dispose = this.ctx.effect(() => {
-      this.#providers.set(provider.id, provider);
+      this._providers.set(provider.id, provider);
       return () => {
-        if (this.#providers.get(provider.id) === provider) this.#providers.delete(provider.id);
+        if (this._providers.get(provider.id) === provider) this._providers.delete(provider.id);
       };
     }, "relayTerminalProviders.register()");
     return () => void dispose();
   }
 
   list() {
-    return [...this.#providers.values()];
+    return [...this._providers.values()];
   }
 
   get(providerId) {
-    return this.#providers.get(providerId);
+    return this._providers.get(providerId);
   }
 }
 

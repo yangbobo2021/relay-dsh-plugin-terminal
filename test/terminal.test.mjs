@@ -28,6 +28,9 @@ test("terminal providers register through a versioned Cordis service and expose 
   assert.equal(registry.apiVersion, 1);
   assert.equal(registry.get("future-backend"), provider);
   assert.deepEqual(registry.list(), [provider]);
+  const proxy = new Proxy(registry, {});
+  assert.equal(proxy.get("future-backend"), provider);
+  assert.deepEqual(proxy.list(), [provider]);
   assert.throws(() => registry.register(provider), /already registered/);
   dispose();
   assert.deepEqual(registry.list(), []);
