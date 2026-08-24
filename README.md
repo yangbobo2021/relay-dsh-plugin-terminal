@@ -1,8 +1,17 @@
 # Relay DSH Terminal Plugin
 
+[![npm version](https://img.shields.io/npm/v/relay-dsh-plugin-terminal?label=npm)](https://www.npmjs.com/package/relay-dsh-plugin-terminal)
+[![CI](https://github.com/yangbobo2021/relay-dsh-plugin-terminal/actions/workflows/ci.yml/badge.svg)](https://github.com/yangbobo2021/relay-dsh-plugin-terminal/actions/workflows/ci.yml)
+[![npm downloads](https://img.shields.io/npm/dm/relay-dsh-plugin-terminal?label=downloads)](https://www.npmjs.com/package/relay-dsh-plugin-terminal)
+[![GitHub stars](https://img.shields.io/github/stars/yangbobo2021/relay-dsh-plugin-terminal?style=flat)](https://github.com/yangbobo2021/relay-dsh-plugin-terminal/stargazers)
+[![MIT license](https://img.shields.io/github/license/yangbobo2021/relay-dsh-plugin-terminal)](LICENSE)
+[![DSH compatibility](https://img.shields.io/badge/DSH-0.1.1--rc.2-2f7d68)](https://github.com/deepseek-ai/deepseek-harness)
+[![Trusted Publishing](https://img.shields.io/badge/npm_trusted_publishing-next_release-2f9e44)](.github/workflows/release.yml)
+
 English | [中文](README.zh.md)
 
-**npm package:** `relay-dsh-plugin-terminal`
+**npm package:** [`relay-dsh-plugin-terminal`](https://www.npmjs.com/package/relay-dsh-plugin-terminal)
+· [All Relay DSH plugins](https://github.com/yangbobo2021/Relay/blob/codex/relay-foundation/docs/dsh-plugins.md)
 
 `relay-dsh-plugin-terminal` adds an xterm-based bottom terminal panel to the
 official [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)

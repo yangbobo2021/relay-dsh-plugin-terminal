@@ -1,8 +1,17 @@
 # Relay DSH Terminal 插件
 
+[![npm 版本](https://img.shields.io/npm/v/relay-dsh-plugin-terminal?label=npm)](https://www.npmjs.com/package/relay-dsh-plugin-terminal)
+[![CI](https://github.com/yangbobo2021/relay-dsh-plugin-terminal/actions/workflows/ci.yml/badge.svg)](https://github.com/yangbobo2021/relay-dsh-plugin-terminal/actions/workflows/ci.yml)
+[![npm 月下载量](https://img.shields.io/npm/dm/relay-dsh-plugin-terminal?label=downloads)](https://www.npmjs.com/package/relay-dsh-plugin-terminal)
+[![GitHub Stars](https://img.shields.io/github/stars/yangbobo2021/relay-dsh-plugin-terminal?style=flat)](https://github.com/yangbobo2021/relay-dsh-plugin-terminal/stargazers)
+[![MIT 许可证](https://img.shields.io/github/license/yangbobo2021/relay-dsh-plugin-terminal)](LICENSE)
+[![DSH 兼容版本](https://img.shields.io/badge/DSH-0.1.1--rc.2-2f7d68)](https://github.com/deepseek-ai/deepseek-harness)
+[![可信发布](https://img.shields.io/badge/npm_trusted_publishing-next_release-2f9e44)](.github/workflows/release.yml)
+
 [English](README.md) | 中文
 
-**npm 包名：** `relay-dsh-plugin-terminal`
+**npm 包名：** [`relay-dsh-plugin-terminal`](https://www.npmjs.com/package/relay-dsh-plugin-terminal)
+· [全部 Relay DSH 插件](https://github.com/yangbobo2021/Relay/blob/codex/relay-foundation/docs/dsh-plugins.zh.md)
 
 `relay-dsh-plugin-terminal` 为官方
 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）Web UI
