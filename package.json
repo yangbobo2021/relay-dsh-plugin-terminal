@@ -61,14 +61,14 @@
     "@types/react": "~18.3.1",
     "lightningcss": "1.32.0",
     "react": "^18.2.0",
+    "relay-dsh-plugin-workbench": "github:yangbobo2021/relay-dsh-plugin-workbench#main",
     "tsdown": "0.22.2",
-    "typescript": "6.0.3",
-    "relay-dsh-plugin-workbench": "github:yangbobo2021/relay-dsh-plugin-workbench#main"
+    "typescript": "6.0.3"
   },
   "peerDependencies": {
     "@deepseek-ai/dsh-typert-protocol": ">=0.1.0-rc.5 <0.1.1 || >=0.1.1-rc.0 <0.2.0",
-    "relay-dsh-plugin-workbench": "^0.1.0",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "relay-dsh-plugin-workbench": "^0.1.0"
   },
   "peerDependenciesMeta": {
     "@deepseek-ai/dsh-typert-protocol": {
