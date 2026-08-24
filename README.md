@@ -50,7 +50,7 @@ Stop a running DSH Web process before changing Profile plugins.
 
 #### GitHub development build
 
-Use this today, before the first npm release:
+Use this when you want the latest unreleased development build:
 
 ```bash
 pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-workbench#main github:yangbobo2021/relay-dsh-plugin-terminal#main

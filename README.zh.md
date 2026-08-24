@@ -46,7 +46,7 @@ DSH 仍是开发预览版本，后续可能出现不兼容变化。
 
 #### GitHub 开发版本
 
-在首个 npm 版本发布前，当前推荐使用 GitHub 安装：
+如果你想测试尚未发布的最新开发代码，可以使用 GitHub 安装：
 
 ```bash
 pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-workbench#main github:yangbobo2021/relay-dsh-plugin-terminal#main
