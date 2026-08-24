@@ -41,11 +41,11 @@ test("README keeps the user-facing install contract documented", async () => {
   const zhReadme = await readFile(new URL("../README.zh.md", import.meta.url), "utf8");
   const screenshot = await readFile(new URL("../docs/images/dsh-terminal-panel.png", import.meta.url));
   const packageJson = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
-  assert.match(readme, /@relay\/dsh-plugin-terminal/);
+  assert.match(readme, /relay-dsh-plugin-terminal/);
   assert.match(readme, /github:yangbobo2021\/relay-dsh-plugin-terminal#main/);
   assert.match(readme, /github:yangbobo2021\/relay-dsh-plugin-workbench#main/);
   assert.match(readme, /relay-dsh-plugin-codex/);
-  assert.match(readme, /@relay\/dsh-plugin-workbench/);
+  assert.match(readme, /relay-dsh-plugin-workbench/);
   assert.match(readme, /docs\/images\/dsh-terminal-panel\.png/);
   assert.match(readme, /\[中文\]\(README\.zh\.md\)/);
   assert.match(zhReadme, /\[English\]\(README\.md\)/);
@@ -53,9 +53,9 @@ test("README keeps the user-facing install contract documented", async () => {
   assert.ok(screenshot.length > 10_000);
   assert.ok(packageJson.files.includes("README.zh.md"));
   assert.ok(packageJson.files.includes("docs/images"));
-  assert.equal(packageJson.dependencies?.["@relay/dsh-plugin-workbench"], undefined);
-  assert.equal(packageJson.devDependencies?.["@relay/dsh-plugin-workbench"], "github:yangbobo2021/relay-dsh-plugin-workbench#main");
-  assert.equal(packageJson.peerDependencies?.["@relay/dsh-plugin-workbench"], "^0.1.0");
+  assert.equal(packageJson.dependencies?.["relay-dsh-plugin-workbench"], undefined);
+  assert.equal(packageJson.devDependencies?.["relay-dsh-plugin-workbench"], "github:yangbobo2021/relay-dsh-plugin-workbench#main");
+  assert.equal(packageJson.peerDependencies?.["relay-dsh-plugin-workbench"], "^0.1.0");
 });
 
 test("build normalization keeps virtual CSS module ids stable across CI paths", async () => {

@@ -2,14 +2,14 @@
 
 [English](README.md) | 中文
 
-**npm 包名：** `@relay/dsh-plugin-terminal`
+**npm 包名：** `relay-dsh-plugin-terminal`
 
-`@relay/dsh-plugin-terminal` 为官方
+`relay-dsh-plugin-terminal` 为官方
 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）Web UI
 增加基于 xterm 的底部终端面板。它提供浏览器终端界面、有边界的滚动输出缓存，
 以及供执行后端注册的公开 provider 注册表。
 
-这个插件使用 `@relay/dsh-plugin-workbench` 作为面板宿主。请在同一个 DSH Profile
+这个插件使用 `relay-dsh-plugin-workbench` 作为面板宿主。请在同一个 DSH Profile
 中安装 Workbench。
 
 ![DSH Web 中的 Relay Terminal 底部面板](docs/images/dsh-terminal-panel.png)
@@ -63,20 +63,17 @@ Workbench，是因为 DSH Profile 中的 pnpm 会阻止 GitHub 包作为传递�
 
 #### npm 正式版本
 
-`@relay/dsh-plugin-terminal` 发布到 npm 后，可以这样安装：
+可以这样安装 npm 正式包：
 
 ```bash
-pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add @relay/dsh-plugin-workbench@latest @relay/dsh-plugin-terminal@latest
+pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add relay-dsh-plugin-workbench@latest relay-dsh-plugin-terminal@latest
 ```
 
 如果希望配合已发布的 Codex 插件使用交互终端：
 
 ```bash
-pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add @relay/dsh-plugin-workbench@latest @relay/dsh-plugin-terminal@latest relay-dsh-plugin-codex@next
+pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add relay-dsh-plugin-workbench@latest relay-dsh-plugin-terminal@latest relay-dsh-plugin-codex@next
 ```
-
-编写本文档时，`@relay/dsh-plugin-terminal` 尚未发布到 npm。如果命令提示
-`404 Not Found`，请使用上面的 GitHub 安装方式。
 
 ### 2. 启动或重启 DSH Web
 
@@ -124,9 +121,9 @@ Codex DSH 插件。
 修改插件前先停止 DSH Web，完成后重新启动。
 
 ```bash
-dsh plugin --profile web why @relay/dsh-plugin-terminal
-dsh plugin --profile web update @relay/dsh-plugin-terminal
-dsh plugin --profile web remove @relay/dsh-plugin-terminal
+dsh plugin --profile web why relay-dsh-plugin-terminal
+dsh plugin --profile web update relay-dsh-plugin-terminal
+dsh plugin --profile web remove relay-dsh-plugin-terminal
 ```
 
 如果是 GitHub 安装，`pnpm` 会在 DSH Profile 中记录来源。可以用 `why` 命令查看。
@@ -138,7 +135,7 @@ dsh plugin --profile web remove @relay/dsh-plugin-terminal
 安装插件后请重启 DSH Web，然后检查 Profile：
 
 ```bash
-dsh plugin --profile web why @relay/dsh-plugin-terminal
+dsh plugin --profile web why relay-dsh-plugin-terminal
 ```
 
 如果安装的是 GitHub `main`，可以尝试固定到一个已知 commit SHA。

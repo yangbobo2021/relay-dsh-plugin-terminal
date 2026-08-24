@@ -1,7 +1,7 @@
 import type { ClientContext } from '@deepseek-ai/dsh-client-runtime/client'
 import { IconCodeOutline16 } from '@deepseek-ai/dsh-client-ui-primitives'
 import type { TypertRemoteContribution } from '@deepseek-ai/dsh-typert-protocol'
-import type { IWorkbench } from '@relay/dsh-plugin-workbench/contracts'
+import type { IWorkbench } from 'relay-dsh-plugin-workbench/contracts'
 import { TERMINAL_REMOTE } from '../remote.ts'
 import { TerminalOutputStore } from './store.ts'
 import { WebTerminalPanel } from './WebTerminalPanel.tsx'

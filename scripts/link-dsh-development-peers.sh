@@ -17,7 +17,7 @@ fi
 source_root="$dsh_root/node_modules/.pnpm/node_modules/@deepseek-ai"
 target_root="$plugin_root/node_modules/@deepseek-ai"
 peers=(
-  cordis dsh-api-remotes dsh-client-connection dsh-client-locale
+  cordis cosmokit dsh-api-remotes dsh-client-connection dsh-client-locale
   dsh-client-runtime dsh-client-ui-conversation dsh-client-ui-primitives
   dsh-client-ui-settings dsh-client-ui-slots dsh-client-ui-theme dsh-llm
   dsh-session dsh-tools dsh-typert-protocol
@@ -34,3 +34,11 @@ for peer in "${peers[@]}"; do
   rm -rf "$target"
   ln -s "$source" "$target"
 done
+
+mkdir -p "$dsh_root/vendor/cordis/node_modules/@deepseek-ai"
+rm -rf "$dsh_root/vendor/cordis/node_modules/@deepseek-ai/cosmokit"
+ln -s "$dsh_root/vendor/cosmokit" "$dsh_root/vendor/cordis/node_modules/@deepseek-ai/cosmokit"
+
+mkdir -p "$dsh_root/vendor/cordis/node_modules/@standard-schema"
+rm -rf "$dsh_root/vendor/cordis/node_modules/@standard-schema/spec"
+ln -s "$dsh_root/node_modules/.pnpm/node_modules/@standard-schema/spec" "$dsh_root/vendor/cordis/node_modules/@standard-schema/spec"

@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import type { UserConfig } from 'tsdown'
 import { transform } from 'lightningcss'
 
-const ID = '@relay/dsh-plugin-terminal'
+const ID = 'relay-dsh-plugin-terminal'
 const ROOT = dirname(fileURLToPath(import.meta.url))
 const CSS_MODULE = '\0relay-css-module:'
 const GLOBAL_CSS = '\0relay-global-css:'
