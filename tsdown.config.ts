@@ -111,7 +111,7 @@ const clientConfig: UserConfig = {
       if (!source.endsWith('.css') || source.endsWith('.module.css')) return null
       const resolved = await this.resolve(source, importer, { skipSelf: true })
       const file = resolved?.id ?? (importer === undefined ? source : resolve(dirname(importer), source))
-      return GLOBAL_CSS + file + VIRTUAL_SUFFIX
+      return GLOBAL_CSS + stableVirtualId(file) + VIRTUAL_SUFFIX
     },
     async load(virtualId: string) {
       if (!virtualId.startsWith(GLOBAL_CSS)) return null
@@ -134,4 +134,8 @@ export default [hostConfig, clientConfig]
 
 function stableFilename(file: string): string {
   return relative(ROOT, file).split('\\').join('/')
+}
+
+function stableVirtualId(file: string): string {
+  return file.replaceAll('\\', '/').replace(/^\.\//, '')
 }
