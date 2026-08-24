@@ -47,6 +47,10 @@ test("README keeps the user-facing install contract documented", async () => {
   assert.match(readme, /relay-dsh-plugin-codex/);
   assert.match(readme, /relay-dsh-plugin-workbench/);
   assert.match(readme, /docs\/images\/dsh-terminal-panel\.png/);
+  for (const document of [readme, zhReadme]) {
+    assert.match(document, /dsh-plugin-suite-demo\.gif/);
+    assert.match(document, /dsh-plugin-suite-demo\.mp4\?raw=1/);
+  }
   assert.match(readme, /\[中文\]\(README\.zh\.md\)/);
   assert.match(zhReadme, /\[English\]\(README\.md\)/);
   assert.deepEqual([...screenshot.subarray(0, 8)], [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
