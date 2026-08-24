@@ -57,3 +57,9 @@ test("README keeps the user-facing install contract documented", async () => {
   assert.equal(packageJson.devDependencies?.["@relay/dsh-plugin-workbench"], "github:yangbobo2021/relay-dsh-plugin-workbench#main");
   assert.equal(packageJson.peerDependencies?.["@relay/dsh-plugin-workbench"], "^0.1.0");
 });
+
+test("build normalization keeps virtual CSS module ids stable across CI paths", async () => {
+  const source = await readFile(new URL("../normalize-build.mjs", import.meta.url), "utf8");
+  assert.match(source, /relay-\(\?:global-css\|css-module\):\)\\\.\\\/node_modules\\\//);
+  assert.match(source, /\$1node_modules\//);
+});

@@ -20,6 +20,7 @@ for (const entry of await readdir(new URL("./lib/", import.meta.url), { withFile
 function normalizePath(value) {
   return value
     .split(root).join(".")
+    .replace(/(relay-(?:global-css|css-module):)\.\/node_modules\//g, "$1node_modules/")
     .replace(/(relay-(?:global-css|css-module):)(?:[A-Za-z]:)?(?:\/[^/\n"']+)+\/node_modules\//g, "$1node_modules/")
     .replace(/^(?:[A-Za-z]:)?(?:\/[^/\n"']+)+\/node_modules\//g, "node_modules/")
     .replace(/(?:\.\.\/)+node_modules\//g, "node_modules/");
