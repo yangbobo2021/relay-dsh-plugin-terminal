@@ -35,3 +35,16 @@ test("terminal providers register through a versioned Cordis service and expose 
   dispose();
   assert.deepEqual(registry.list(), []);
 });
+
+test("README keeps the user-facing install contract documented", async () => {
+  const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
+  const zhReadme = await readFile(new URL("../README.zh.md", import.meta.url), "utf8");
+  const packageJson = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
+  assert.match(readme, /@relay\/dsh-plugin-terminal/);
+  assert.match(readme, /github:yangbobo2021\/relay-dsh-plugin-terminal#main/);
+  assert.match(readme, /relay-dsh-plugin-codex/);
+  assert.match(readme, /@relay\/dsh-plugin-workbench/);
+  assert.match(readme, /\[中文\]\(README\.zh\.md\)/);
+  assert.match(zhReadme, /\[English\]\(README\.md\)/);
+  assert.ok(packageJson.files.includes("README.zh.md"));
+});

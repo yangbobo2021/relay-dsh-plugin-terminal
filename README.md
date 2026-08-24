@@ -1,31 +1,178 @@
 # Relay DSH Terminal Plugin
 
-`@relay/dsh-plugin-terminal` adds an xterm-based bottom terminal view to official
-DeepSeek Harness Web. It installs the Relay Workbench shell automatically and owns
-the browser Remote, bounded Host scrollback, and versioned
-`ctx.relayTerminalProviders` registry. Execution backends contribute PTY
-transports through that Cordis service.
+English | [中文](README.zh.md)
 
-Use this plugin when you want an official DSH installation to expose an interactive
-terminal panel. Install a backend that contributes a terminal provider, such as
-`relay-dsh-plugin-codex`, when you want a live PTY transport.
+**npm package:** `@relay/dsh-plugin-terminal`
 
-Install from npm:
+`@relay/dsh-plugin-terminal` adds an xterm-based bottom terminal panel to the
+official [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
+(DSH) Web UI. It provides the browser terminal surface, bounded scrollback, and a
+public provider registry for execution backends.
+
+The plugin installs `@relay/dsh-plugin-workbench` automatically. You do not need
+to install Workbench first.
+
+## Do I Need This Plugin?
+
+Install this plugin when you want to:
+
+- add a terminal panel to official DSH Web through the plugin system;
+- use a compatible execution backend, such as `relay-dsh-plugin-codex`, as the
+  terminal transport;
+- develop another backend that contributes terminal sessions through the public
+  `ctx.relayTerminalProviders` registry.
+
+Terminal is provider-neutral. If you install only this package, DSH can load the
+panel but cannot start a live shell until another plugin registers a terminal
+provider.
+
+## Quick Start With Official DSH
+
+The current development build has been validated with:
+
+- DeepSeek Harness `0.1.1-rc.2`, commit
+  [`b150a551`](https://github.com/deepseek-ai/deepseek-harness/commit/b150a551b8d465e31e418e1b2eaf5e79bbb7d28e)
+- Node.js 22.13 or newer
+- `pnpm` available on `PATH`
+
+DSH is a developer preview and may introduce compatibility-breaking changes.
+
+### 1. Install
+
+Stop a running DSH Web process before changing Profile plugins.
+
+#### GitHub development build
+
+Use this today, before the first npm release:
 
 ```bash
-dsh plugin --profile web add @relay/dsh-plugin-terminal relay-dsh-plugin-codex
+npx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-terminal#main
 ```
 
-Install the current GitHub development versions:
+For an interactive terminal through Codex, install both development plugins:
 
 ```bash
-dsh plugin --profile web add github:yangbobo2021/relay-dsh-plugin-terminal github:yangbobo2021/relay-dsh-plugin-codex
+npx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-terminal#main github:yangbobo2021/relay-dsh-plugin-codex#main
 ```
 
-Without a provider the plugin still loads and reports terminal unavailability when
-a user tries to spawn a session.
+For a reproducible install, replace `#main` with a tag or full commit SHA.
 
-The plugin owns only terminal presentation and provider registration. It depends
-on Workbench's public view contract, but does not depend on Codex, Claude, or
-Events. It is maintained as part of Relay's DSH plugin family, where Relay
-provides the broader event-driven Agent direction.
+#### npm release
+
+After `@relay/dsh-plugin-terminal` is published to npm, install it with:
+
+```bash
+npx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add @relay/dsh-plugin-terminal@latest
+```
+
+For an interactive terminal through a published Codex plugin:
+
+```bash
+npx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add @relay/dsh-plugin-terminal@latest relay-dsh-plugin-codex@next
+```
+
+At the time this README was written, `@relay/dsh-plugin-terminal` had not been
+published to npm yet. If the command reports `404 Not Found`, use the GitHub
+install above.
+
+### 2. Start or restart DSH Web
+
+```bash
+npx @deepseek-ai/dsh@0.1.1-rc.2 web
+```
+
+If you already have a `dsh` command installed, `dsh web` is equivalent. Restart
+DSH Web after installing, updating, or removing plugins.
+
+### 3. Open the terminal panel
+
+In DSH Web:
+
+1. Open the DSH URL printed by the terminal.
+2. Complete the first-launch screen if DSH shows one.
+3. Create or select a conversation that has a workspace directory.
+4. Open the Workbench bottom panel and choose `Terminal`.
+5. Start a terminal session.
+
+If no compatible terminal provider is installed, the panel reports that no
+interactive terminal provider is available.
+
+## What It Provides
+
+- A `Terminal` view in the Workbench bottom panel
+- An xterm-based browser terminal surface
+- Bounded scrollback on the Host side
+- A versioned `ctx.relayTerminalProviders` registry
+- Provider-neutral spawn, input, resize, output, and termination wiring
+- Automatic installation of the Workbench shell dependency
+
+This package does not spawn shells by itself. Shell execution is supplied by a
+provider plugin, currently including the Relay Codex DSH plugin.
+
+## Plugin Boundary and Relay
+
+This plugin owns only terminal presentation and provider registration. It does
+not depend on Claude, Relay Events, or any private Relay runtime. Codex is an
+optional provider plugin, not a hard dependency of Terminal.
+
+The repository is maintained as part of
+[Relay](https://github.com/yangbobo2021/Relay), an open-source project for
+long-running agent work, external-event delivery, reusable DSH workbench views,
+and multiple conversation backends.
+
+## Update, Inspect, or Remove
+
+Stop DSH Web before changing plugins, then restart it afterward.
+
+```bash
+dsh plugin --profile web why @relay/dsh-plugin-terminal
+dsh plugin --profile web update @relay/dsh-plugin-terminal
+dsh plugin --profile web remove @relay/dsh-plugin-terminal
+```
+
+For GitHub installs, `pnpm` records the package source inside the DSH Profile.
+Run `dsh plugin --profile web why @relay/dsh-plugin-terminal` to inspect it.
+
+## Troubleshooting
+
+### The Terminal panel does not appear
+
+Restart DSH Web after installing the plugin. Then inspect the Profile:
+
+```bash
+dsh plugin --profile web why @relay/dsh-plugin-terminal
+```
+
+If the package came from GitHub `main`, try pinning a known commit SHA.
+
+### The panel says no interactive terminal provider is installed
+
+This means Terminal loaded correctly, but no backend plugin registered a PTY
+provider. Install a compatible provider such as `relay-dsh-plugin-codex`.
+
+### A terminal cannot start because no workspace is available
+
+Create or select a DSH conversation that has a workspace directory. Terminal
+sessions start inside the active workspace.
+
+### Installation says pnpm is missing
+
+Install pnpm using the official guide: <https://pnpm.io/installation>.
+
+## Development
+
+```bash
+git clone https://github.com/yangbobo2021/relay-dsh-plugin-terminal.git
+cd relay-dsh-plugin-terminal
+npm install
+DSH_ROOT=/path/to/deepseek-harness npm run verify
+npm pack
+```
+
+`npm run verify` runs type checking, tests, and the production build against an
+official DSH checkout.
+
+## Feedback
+
+Report bugs and feature requests in this repository's issue tracker:
+<https://github.com/yangbobo2021/relay-dsh-plugin-terminal/issues>
