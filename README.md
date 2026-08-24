@@ -9,8 +9,15 @@ official [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
 (DSH) Web UI. It provides the browser terminal surface, bounded scrollback, and a
 public provider registry for execution backends.
 
-The plugin installs `@relay/dsh-plugin-workbench` automatically. You do not need
-to install Workbench first.
+The plugin uses `@relay/dsh-plugin-workbench` as its panel host. Install
+Workbench in the same DSH Profile.
+
+![Relay Terminal bottom panel in DSH Web](docs/images/dsh-terminal-panel.png)
+
+The screenshot was captured from official DSH `0.1.1-rc.2` with Workbench,
+Files, and Terminal installed. Terminal can load without a provider and shows a
+clear provider-unavailable state; install a compatible backend when you want a
+live shell.
 
 ## Do I Need This Plugin?
 
@@ -46,29 +53,31 @@ Stop a running DSH Web process before changing Profile plugins.
 Use this today, before the first npm release:
 
 ```bash
-npx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-terminal#main
+pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-workbench#main github:yangbobo2021/relay-dsh-plugin-terminal#main
 ```
 
 For an interactive terminal through Codex, install both development plugins:
 
 ```bash
-npx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-terminal#main github:yangbobo2021/relay-dsh-plugin-codex#main
+pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-workbench#main github:yangbobo2021/relay-dsh-plugin-terminal#main github:yangbobo2021/relay-dsh-plugin-codex#main
 ```
 
-For a reproducible install, replace `#main` with a tag or full commit SHA.
+For a reproducible install, replace each `#main` with a tag or full commit SHA.
+The Workbench package is listed explicitly because DSH's pnpm profile blocks
+GitHub packages as transitive dependencies.
 
 #### npm release
 
 After `@relay/dsh-plugin-terminal` is published to npm, install it with:
 
 ```bash
-npx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add @relay/dsh-plugin-terminal@latest
+pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add @relay/dsh-plugin-workbench@latest @relay/dsh-plugin-terminal@latest
 ```
 
 For an interactive terminal through a published Codex plugin:
 
 ```bash
-npx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add @relay/dsh-plugin-terminal@latest relay-dsh-plugin-codex@next
+pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add @relay/dsh-plugin-workbench@latest @relay/dsh-plugin-terminal@latest relay-dsh-plugin-codex@next
 ```
 
 At the time this README was written, `@relay/dsh-plugin-terminal` had not been
@@ -78,7 +87,7 @@ install above.
 ### 2. Start or restart DSH Web
 
 ```bash
-npx @deepseek-ai/dsh@0.1.1-rc.2 web
+pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 web
 ```
 
 If you already have a `dsh` command installed, `dsh web` is equivalent. Restart
@@ -104,7 +113,7 @@ interactive terminal provider is available.
 - Bounded scrollback on the Host side
 - A versioned `ctx.relayTerminalProviders` registry
 - Provider-neutral spawn, input, resize, output, and termination wiring
-- Automatic installation of the Workbench shell dependency
+- Composition with the shared Workbench shell
 
 This package does not spawn shells by itself. Shell execution is supplied by a
 provider plugin, currently including the Relay Codex DSH plugin.

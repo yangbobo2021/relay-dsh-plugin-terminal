@@ -9,7 +9,14 @@
 增加基于 xterm 的底部终端面板。它提供浏览器终端界面、有边界的滚动输出缓存，
 以及供执行后端注册的公开 provider 注册表。
 
-这个插件会自动安装 `@relay/dsh-plugin-workbench`。你不需要先手动安装 Workbench。
+这个插件使用 `@relay/dsh-plugin-workbench` 作为面板宿主。请在同一个 DSH Profile
+中安装 Workbench。
+
+![DSH Web 中的 Relay Terminal 底部面板](docs/images/dsh-terminal-panel.png)
+
+截图来自官方 DSH `0.1.1-rc.2`，安装了 Workbench、Files 和 Terminal。Terminal
+可以在没有 provider 的情况下加载，并清楚提示 provider 不可用；如果需要真实交互
+shell，请安装兼容后端。
 
 ## 我需要这个插件吗？
 
@@ -42,29 +49,30 @@ DSH 仍是开发预览版本，后续可能出现不兼容变化。
 在首个 npm 版本发布前，当前推荐使用 GitHub 安装：
 
 ```bash
-npx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-terminal#main
+pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-workbench#main github:yangbobo2021/relay-dsh-plugin-terminal#main
 ```
 
 如果希望通过 Codex 使用交互终端，可以同时安装两个开发插件：
 
 ```bash
-npx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-terminal#main github:yangbobo2021/relay-dsh-plugin-codex#main
+pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-workbench#main github:yangbobo2021/relay-dsh-plugin-terminal#main github:yangbobo2021/relay-dsh-plugin-codex#main
 ```
 
-如果希望可复现，请把 `#main` 改成具体 Tag 或完整 commit SHA。
+如果希望可复现，请把每个 `#main` 都改成具体 Tag 或完整 commit SHA。这里显式列出
+Workbench，是因为 DSH Profile 中的 pnpm 会阻止 GitHub 包作为传递依赖。
 
 #### npm 正式版本
 
 `@relay/dsh-plugin-terminal` 发布到 npm 后，可以这样安装：
 
 ```bash
-npx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add @relay/dsh-plugin-terminal@latest
+pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add @relay/dsh-plugin-workbench@latest @relay/dsh-plugin-terminal@latest
 ```
 
 如果希望配合已发布的 Codex 插件使用交互终端：
 
 ```bash
-npx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add @relay/dsh-plugin-terminal@latest relay-dsh-plugin-codex@next
+pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add @relay/dsh-plugin-workbench@latest @relay/dsh-plugin-terminal@latest relay-dsh-plugin-codex@next
 ```
 
 编写本文档时，`@relay/dsh-plugin-terminal` 尚未发布到 npm。如果命令提示
@@ -73,7 +81,7 @@ npx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add @relay/dsh-plugin-termi
 ### 2. 启动或重启 DSH Web
 
 ```bash
-npx @deepseek-ai/dsh@0.1.1-rc.2 web
+pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 web
 ```
 
 如果你已经安装了 `dsh` 命令，也可以运行 `dsh web`。安装、更新或删除插件后都
@@ -98,7 +106,7 @@ npx @deepseek-ai/dsh@0.1.1-rc.2 web
 - Host 侧有边界的滚动输出缓存
 - 版本化的 `ctx.relayTerminalProviders` 注册表
 - provider-neutral 的启动、输入、尺寸调整、输出和终止连接
-- 自动安装 Workbench 壳层依赖
+- 与共享 Workbench 壳层组合使用
 
 这个包本身不负责启动 shell。shell 执行能力由 provider 插件提供，目前包括 Relay
 Codex DSH 插件。
