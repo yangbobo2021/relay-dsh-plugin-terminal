@@ -2,6 +2,14 @@
   "name": "relay-dsh-plugin-terminal",
   "version": "0.1.0",
   "description": "Provider-neutral interactive terminal plugin for the Relay workbench in DeepSeek Harness.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yangbobo2021/relay-dsh-plugin-terminal.git"
+  },
+  "homepage": "https://github.com/yangbobo2021/relay-dsh-plugin-terminal#readme",
+  "bugs": {
+    "url": "https://github.com/yangbobo2021/relay-dsh-plugin-terminal/issues"
+  },
   "license": "MIT",
   "type": "module",
   "main": "lib/host-plugin.js",
