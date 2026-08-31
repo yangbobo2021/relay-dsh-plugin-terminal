@@ -1,4 +1,4 @@
-import type { ClientContext } from '@deepseek-ai/dsh-client-runtime/client'
+import type { Context as ClientContext } from '@deepseek-ai/cordis'
 import { IconCodeOutline16 } from '@deepseek-ai/dsh-client-ui-primitives'
 import type { TypertRemoteContribution } from '@deepseek-ai/dsh-typert-protocol'
 import type { IWorkbench } from 'relay-dsh-plugin-workbench/contracts'

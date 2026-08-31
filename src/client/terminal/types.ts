@@ -1,6 +1,6 @@
 import type { GlobalStandardProps } from '@deepseek-ai/dsh-client-ui-slots'
 import type { WorkbenchPanelOwnerProps } from 'relay-dsh-plugin-workbench/contracts'
-import type { SessionId } from '@deepseek-ai/dsh-client-runtime/client'
+import type { SessionId } from '@deepseek-ai/dsh-session/types'
 import type { TerminalOutputStore } from './store.ts'
 
 export type TerminalSessionId = string

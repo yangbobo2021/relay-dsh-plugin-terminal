@@ -8,7 +8,7 @@ import {
   IconPlusOutline16,
   Tooltip,
 } from '@deepseek-ai/dsh-client-ui-primitives'
-import type { SessionId } from '@deepseek-ai/dsh-client-runtime/client'
+import type { SessionId } from '@deepseek-ai/dsh-session/types'
 import type { TerminalSessionId, WebTerminalPanelProps } from './types.ts'
 import css from './WebTerminalPanel.module.css'
 
