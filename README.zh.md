@@ -123,6 +123,17 @@ pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 web
 这个包本身不负责启动 shell。shell 执行能力由 provider 插件提供，目前包括 Relay
 Codex DSH 插件。
 
+### 手动终端权限
+
+使用 Codex provider 时，每个手动终端会为其 Shell 显式请求
+`sandboxPolicy: { type: "dangerFullAccess" }`，以支持普通 SSH 连接和用户文件写入。
+这不会修改共享 Codex 后端配置，也不会改变 Agent 对话的沙箱或审批策略；不会获得
+管理员权限或绕过操作系统权限。
+
+访问终端等同于以 DSH 宿主用户身份执行命令，必须限制在可信且经过身份验证的访问
+范围内；会话 ID 不是身份凭据。不要把此手动终端能力开放为 Agent 工具。如果
+provider 拒绝该权限策略，终端启动失败，不会自动切换策略重试。
+
 ## 与 Relay 的关系
 
 这个插件只负责终端展示和 provider 注册机制。它不依赖 Claude、Relay Events，也不
@@ -163,6 +174,12 @@ provider，例如 `relay-dsh-plugin-codex`。
 ### 终端无法启动，提示没有工作区
 
 请创建或选择一个带工作区目录的 DSH 对话。终端会话会在当前工作区中启动。
+
+### 系统终端能连接，但这里 SSH 报 Operation not permitted
+
+旧版插件没有指定 Shell 沙箱策略，会继承 Codex 后端的默认限制。请更新插件，
+重启 DSH Web，再新建终端。已经启动的 Shell 不会自动获得新权限。如果更新后仍有
+此错误，请检查宿主应用的操作系统网络权限和管理员配置的限制。
 
 ### 安装提示缺少 pnpm
 
