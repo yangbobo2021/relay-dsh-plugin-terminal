@@ -129,6 +129,20 @@ interactive terminal provider is available.
 This package does not spawn shells by itself. Shell execution is supplied by a
 provider plugin, currently including the Relay Codex DSH plugin.
 
+### Manual terminal permissions
+
+With the Codex provider, each user-operated terminal explicitly requests
+`sandboxPolicy: { type: "dangerFullAccess" }` for its shell. This allows ordinary
+SSH connections and user-file writes without changing the shared Codex server
+configuration or any Agent conversation's sandbox or approval policy. It does
+not grant administrator privileges or bypass operating-system permissions.
+
+Terminal access is equivalent to command execution as the DSH host user. Expose
+it only through trusted, authenticated access; a session ID is not an
+authentication credential. Do not expose this manual-terminal capability as an
+Agent tool. If the provider rejects the requested policy, startup fails without
+retrying with a different policy.
+
 ## Plugin Boundary and Relay
 
 This plugin owns only terminal presentation and provider registration. It does
@@ -174,6 +188,14 @@ provider. Install a compatible provider such as `relay-dsh-plugin-codex`.
 
 Create or select a DSH conversation that has a workspace directory. Terminal
 sessions start inside the active workspace.
+
+### SSH reports "Operation not permitted" although a system terminal connects
+
+Older plugin builds omitted the shell's sandbox policy and inherited the Codex
+server's default restrictions. Update the plugin, restart DSH Web, and create a
+new terminal. Existing shell processes retain the permissions they started with.
+If the error remains, check the host application's operating-system network
+permissions and any administrator-managed restrictions.
 
 ### Installation says pnpm is missing
 

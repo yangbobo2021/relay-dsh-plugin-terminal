@@ -101,6 +101,10 @@ export class RelayTerminalGateway extends TypertRemoteService {
         command: shellCommand(), processId: terminal.processId, tty: true,
         streamStdin: true, streamStdoutStderr: true, disableOutputCap: true,
         disableTimeout: true, cwd: terminal.cwd,
+        // This is a user-operated terminal, not an agent tool. Apply the policy
+        // to this shell only; never change the shared server or agent settings.
+        // Omitting it inherits a sandbox that can block SSH and shell history.
+        sandboxPolicy: { type: "dangerFullAccess" },
         env: { TERM: "xterm-256color", PAGER: "cat", GIT_PAGER: "cat" },
         size: { cols: 100, rows: 30 },
       }, { timeoutMs: null });
