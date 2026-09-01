@@ -1,10 +1,10 @@
 # Relay DSH Terminal 插件
 
-> **现已支持最新 DSH `0.1.2-alpha.2`。** 同一插件版本已在 DSH `0.1.2-alpha.2` 与 `0.1.1-rc.2` 上完成兼容验证。[安装插件，立即体验最新版 DSH](https://www.npmjs.com/package/relay-dsh-plugin-terminal) · [兼容性详情](docs/dsh-0.1.2-alpha.2.md)。
+> **现已支持最新 DSH `0.1.2-alpha.3`。** 插件 `0.2.1` 已在 DSH `0.1.2-alpha.3`、`0.1.2-alpha.2` 与 `0.1.1-rc.2` 上完成兼容验证。[安装插件，立即体验最新版 DSH](https://www.npmjs.com/package/relay-dsh-plugin-terminal) · [兼容性详情](docs/dsh-0.1.2-alpha.3.md)。
 
 ```bash
-npx @deepseek-ai/dsh@0.1.2-alpha.2 plugin --profile web add relay-dsh-plugin-workbench@0.2.0 relay-dsh-plugin-terminal@0.2.0 relay-dsh-plugin-codex@0.2.0
-npx @deepseek-ai/dsh@0.1.2-alpha.2 web
+npx @deepseek-ai/dsh@0.1.2-alpha.3 plugin --profile web add relay-dsh-plugin-workbench@0.2.1 relay-dsh-plugin-terminal@0.2.1 relay-dsh-plugin-codex@0.2.1
+npx @deepseek-ai/dsh@0.1.2-alpha.3 web
 ```
 
 [![npm 版本](https://img.shields.io/npm/v/relay-dsh-plugin-terminal?label=npm)](https://www.npmjs.com/package/relay-dsh-plugin-terminal)
@@ -12,7 +12,7 @@ npx @deepseek-ai/dsh@0.1.2-alpha.2 web
 [![npm 月下载量](https://img.shields.io/npm/dm/relay-dsh-plugin-terminal?label=downloads)](https://www.npmjs.com/package/relay-dsh-plugin-terminal)
 [![GitHub Stars](https://img.shields.io/github/stars/yangbobo2021/relay-dsh-plugin-terminal?style=flat)](https://github.com/yangbobo2021/relay-dsh-plugin-terminal/stargazers)
 [![MIT 许可证](https://img.shields.io/github/license/yangbobo2021/relay-dsh-plugin-terminal)](LICENSE)
-[![DSH 兼容版本](https://img.shields.io/badge/DSH-0.1.1--rc.2%20%7C%200.1.2--alpha.2-2f7d68)](https://github.com/deepseek-ai/deepseek-harness)
+[![DSH 兼容版本](https://img.shields.io/badge/DSH-0.1.1--rc.2%20%7C%200.1.2--alpha.2%20%7C%200.1.2--alpha.3-2f7d68)](https://github.com/deepseek-ai/deepseek-harness)
 [![可信发布](https://img.shields.io/badge/npm_trusted_publishing-next_release-2f9e44)](.github/workflows/release.yml)
 
 [English](README.md) | 中文
@@ -71,13 +71,13 @@ DSH 仍是开发预览版本，后续可能出现不兼容变化。
 如果你想测试尚未发布的最新开发代码，可以使用 GitHub 安装：
 
 ```bash
-pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-workbench#main github:yangbobo2021/relay-dsh-plugin-terminal#main
+pnpm dlx @deepseek-ai/dsh@0.1.2-alpha.3 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-workbench#main github:yangbobo2021/relay-dsh-plugin-terminal#main
 ```
 
 如果希望通过 Codex 使用交互终端，可以同时安装两个开发插件：
 
 ```bash
-pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-workbench#main github:yangbobo2021/relay-dsh-plugin-terminal#main github:yangbobo2021/relay-dsh-plugin-codex#main
+pnpm dlx @deepseek-ai/dsh@0.1.2-alpha.3 plugin --profile web add github:yangbobo2021/relay-dsh-plugin-workbench#main github:yangbobo2021/relay-dsh-plugin-terminal#main github:yangbobo2021/relay-dsh-plugin-codex#main
 ```
 
 如果希望可复现，请把每个 `#main` 都改成具体 Tag 或完整 commit SHA。这里显式列出
@@ -88,19 +88,19 @@ Workbench，是因为 DSH Profile 中的 pnpm 会阻止 GitHub 包作为传递�
 可以这样安装 npm 正式包：
 
 ```bash
-pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add relay-dsh-plugin-workbench@latest relay-dsh-plugin-terminal@latest
+pnpm dlx @deepseek-ai/dsh@0.1.2-alpha.3 plugin --profile web add relay-dsh-plugin-workbench@latest relay-dsh-plugin-terminal@latest
 ```
 
 如果希望配合已发布的 Codex 插件使用交互终端：
 
 ```bash
-pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 plugin --profile web add relay-dsh-plugin-workbench@latest relay-dsh-plugin-terminal@latest relay-dsh-plugin-codex@next
+pnpm dlx @deepseek-ai/dsh@0.1.2-alpha.3 plugin --profile web add relay-dsh-plugin-workbench@latest relay-dsh-plugin-terminal@latest relay-dsh-plugin-codex@next
 ```
 
 ### 2. 启动或重启 DSH Web
 
 ```bash
-pnpm dlx @deepseek-ai/dsh@0.1.1-rc.2 web
+pnpm dlx @deepseek-ai/dsh@0.1.2-alpha.3 web
 ```
 
 如果你已经安装了 `dsh` 命令，也可以运行 `dsh web`。安装、更新或删除插件后都
