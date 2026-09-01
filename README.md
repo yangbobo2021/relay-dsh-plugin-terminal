@@ -3,7 +3,7 @@
 > **Now supports the latest DSH `0.1.2-alpha.2`.** The same plugin release is verified on DSH `0.1.2-alpha.2` and `0.1.1-rc.2`. [Install it and try the latest DSH](https://www.npmjs.com/package/relay-dsh-plugin-terminal) · [Compatibility details](docs/dsh-0.1.2-alpha.2.md).
 
 ```bash
-npx @deepseek-ai/dsh@0.1.2-alpha.2 plugin --profile web add relay-dsh-plugin-workbench@0.2.0-rc.1 relay-dsh-plugin-terminal@0.2.0-rc.1 relay-dsh-plugin-codex@0.2.0-rc.1
+npx @deepseek-ai/dsh@0.1.2-alpha.2 plugin --profile web add relay-dsh-plugin-workbench@0.2.0 relay-dsh-plugin-terminal@0.2.0 relay-dsh-plugin-codex@0.2.0
 npx @deepseek-ai/dsh@0.1.2-alpha.2 web
 ```
 
