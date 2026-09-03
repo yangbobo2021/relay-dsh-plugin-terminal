@@ -58,7 +58,7 @@ test("README keeps the user-facing install contract documented", async () => {
   assert.ok(packageJson.files.includes("README.zh.md"));
   assert.ok(packageJson.files.includes("docs/images"));
   assert.equal(packageJson.dependencies?.["relay-dsh-plugin-workbench"], undefined);
-  assert.equal(packageJson.devDependencies?.["relay-dsh-plugin-workbench"], "github:yangbobo2021/relay-dsh-plugin-workbench#43a2c501c7d51927dd8e18e7aa6bf32fd0db0bf5");
+  assert.equal(packageJson.devDependencies?.["relay-dsh-plugin-workbench"], "github:yangbobo2021/relay-dsh-plugin-workbench#d3612e1baa525faae67cbf28f45662826b4223e2");
   assert.equal(packageJson.peerDependencies?.["relay-dsh-plugin-workbench"], packageJson.version);
 });
 
